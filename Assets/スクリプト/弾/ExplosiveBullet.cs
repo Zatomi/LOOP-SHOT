@@ -5,6 +5,11 @@ public class ExplosiveBullet : MonoBehaviour
     public float explosionRadius = 2f;
     public GameObject explosionEffectPrefab;
 
+    [Header("爆発音")]
+    public AudioClip explosionSound;
+    [Range(0f, 1f)]
+    public float explosionVolume = 1f;
+
     private bool hasStopped = false;
     private bool canPickup = false;
 
@@ -113,7 +118,17 @@ public class ExplosiveBullet : MonoBehaviour
     // =========================
     void Explode()
     {
-        Debug.Log("💥 爆発！");
+        Debug.Log("爆発！");
+
+        // 爆発音を再生
+        if (explosionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                explosionSound,
+                transform.position,
+                explosionVolume
+            );
+        }
 
         // 爆発エフェクトを表示
         if (explosionEffectPrefab != null)

@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b481a892c29f2b439656150204e056a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealItem
+  healSound: {fileID: 8300000, guid: d76284bd1205a6345b433dc63e2c617e, type: 3}
+  healVolume: 1
 --- !u!58 &4428630769234402088
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,6 +15,15 @@ public class PlayerShoot : MonoBehaviour
 
     public SpecialBulletUI specialBulletUI;
 
+
+    [Header("î≠éÀâπ")]
+    public AudioClip shootSound;
+    [Range(0f, 1f)]
+    public float shootVolume = 1f;
+
+    private AudioSource audioSource;
+
+
     private bool hasBullet = true;
 
     // èEÇ¡ÇΩèáî‘Ç…ì¡éÍíeÇï€ë∂
@@ -122,6 +131,8 @@ if (Mouse.current.scroll.ReadValue().y != 0)
 
     void Shoot()
     {
+        audioSource = GetComponent<AudioSource>();
+
         Vector3 mousePosition = Mouse.current.position.ReadValue();
 
         Vector3 worldMousePosition =
@@ -195,6 +206,16 @@ if (Mouse.current.scroll.ReadValue().y != 0)
             spawnPosition,
             Quaternion.Euler(0, 0, angle - 90f)
         );
+
+        // íeÇÃî≠éÀâπ
+        if (shootSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                shootSound,
+                transform.position,
+                shootVolume
+            );
+        }
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 

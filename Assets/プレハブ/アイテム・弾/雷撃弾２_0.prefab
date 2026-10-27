@@ -172,4 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightningBullet
   lightningRadius: 6
   damage: 2
+  lightningSound: {fileID: 8300000, guid: 0f1b76ba00080ec4aa09053e1eab03c9, type: 3}
+  lightningVolume: 1
   lightningEffectPrefab: {fileID: 5260959381167440282, guid: 7f020303881d9bf43aed8dbfb2c9cab1, type: 3}

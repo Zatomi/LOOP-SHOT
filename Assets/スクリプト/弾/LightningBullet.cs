@@ -8,6 +8,11 @@ public class LightningBullet : MonoBehaviour
     public float lightningRadius = 2f;
     public int damage = 2;
 
+    [Header("雷の音")]
+    public AudioClip lightningSound;
+    [Range(0f, 1f)]
+    public float lightningVolume = 1f;
+
     [Header("雷撃エフェクト")]
     public GameObject lightningEffectPrefab;
 
@@ -81,6 +86,16 @@ public class LightningBullet : MonoBehaviour
     void StrikeLightning()
     {
         hasStopped = true;
+
+        // 雷の音を再生
+        if (lightningSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                lightningSound,
+                transform.position,
+                lightningVolume
+            );
+        }
 
         Debug.Log("雷撃！ 周囲の敵にもダメージ！");
 
