@@ -4,8 +4,9 @@ public class SpecialBulletItem : MonoBehaviour
 {
     public SpecialBulletType bulletType;
 
-    [Header("æ“¾‰¹")]
+    [Header("æ“¾İ’è")]
     public AudioClip pickupSound;
+
     [Range(0f, 1f)]
     public float pickupVolume = 1f;
 
@@ -18,6 +19,13 @@ public class SpecialBulletItem : MonoBehaviour
 
         if (playerShoot == null)
             return;
+
+        // “Áê’e‚ª–ƒ^ƒ“‚È‚çE‚í‚¸A‚»‚Ìê‚Éc‚·
+        if (playerShoot.IsSpecialBulletFull())
+        {
+            Debug.Log("“Áê’e‚ª–ƒ^ƒ“‚È‚Ì‚Åæ“¾‚µ‚Ü‚¹‚ñ");
+            return;
+        }
 
         // “Áê’e‚ğæ“¾
         playerShoot.GetSpecialBullet(bulletType);

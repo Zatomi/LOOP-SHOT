@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealItem : MonoBehaviour
 {
-    [Header("回復音")]
+    [Header("回復設定")]
     public AudioClip healSound;
 
     [Range(0f, 1f)]
@@ -16,23 +16,30 @@ public class HealItem : MonoBehaviour
         PlayerHealth playerHealth =
             other.GetComponent<PlayerHealth>();
 
-        if (playerHealth != null)
+        if (playerHealth == null)
+            return;
+
+        // HPが最大なら拾わず、その場に残す
+        if (playerHealth.IsFullHealth())
         {
-            // 回復処理
-            playerHealth.Heal();
-
-            // 回復音を再生
-            if (healSound != null)
-            {
-                AudioSource.PlayClipAtPoint(
-                    healSound,
-                    transform.position,
-                    healVolume
-                );
-            }
-
-            // 回復アイテムを削除
-            Destroy(gameObject);
+            Debug.Log("HPが満タンなので回復アイテムを取得しません");
+            return;
         }
+
+        // HPを回復
+        playerHealth.Heal();
+
+        // 回復音を再生
+        if (healSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                healSound,
+                transform.position,
+                healVolume
+            );
+        }
+
+        // アイテムを削除
+        Destroy(gameObject);
     }
 }

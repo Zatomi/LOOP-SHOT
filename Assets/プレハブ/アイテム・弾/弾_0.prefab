@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   hitSound: {fileID: 8300000, guid: 06209dd522bffed43b57e8b7924d85cc, type: 3}
-  hitVolume: 1
+  hitVolume: 0.3
 --- !u!70 &3957892667006225689
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

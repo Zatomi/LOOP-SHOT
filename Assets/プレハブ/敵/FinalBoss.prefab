@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3597038521459559274}
   - component: {fileID: 4355627929149955878}
   - component: {fileID: 3173477329921843184}
+  - component: {fileID: 7953862302825093267}
   m_Layer: 0
   m_Name: FinalBoss
   m_TagString: Boss
@@ -173,3 +174,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.21, y: 5.3}
   m_Direction: 0
+--- !u!95 &7953862302825093267
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987352964204979258}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7602530c0f678ed458b742a7cd1adaa4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -6,8 +6,17 @@ public class FinalBossAttack : MonoBehaviour
     public int bulletCount = 16;
     public float attackInterval = 3f;
 
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogWarning("大ボスのAnimatorが見つかりません");
+        }
+
         InvokeRepeating(nameof(ShootAllDirections), 1f, attackInterval);
     }
 
@@ -17,6 +26,12 @@ public class FinalBossAttack : MonoBehaviour
         {
             Debug.LogWarning("BossBulletのPrefabを設定してください");
             return;
+        }
+
+        // 攻撃モーションを再生
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
         }
 
         float angleStep = 360f / bulletCount;

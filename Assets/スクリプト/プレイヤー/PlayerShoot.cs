@@ -254,6 +254,12 @@ if (Mouse.current.scroll.ReadValue().y != 0)
         Debug.Log("’e‚ð‰ñŽû‚µ‚Ü‚µ‚½I");
     }
 
+    // “ÁŽê’e‚ª–žƒ^ƒ“‚©Šm”F
+    public bool IsSpecialBulletFull()
+    {
+        return specialBullets.Count >= maxSpecialBullets;
+    }
+
     public void GetSpecialBullet(SpecialBulletType type)
     {
         if (specialBullets.Count >= maxSpecialBullets)

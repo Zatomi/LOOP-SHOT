@@ -3519,7 +3519,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 25
   m_MaskInteraction: 0
   m_Sprite: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3584,7 +3584,7 @@ MonoBehaviour:
   maxHits: 5
   invincibleTime: 1.5
   damageSound: {fileID: 8300000, guid: 06209dd522bffed43b57e8b7924d85cc, type: 3}
-  damageVolume: 1
+  damageVolume: 0.16
   hearts:
   - {fileID: 1998376519}
   - {fileID: 576231484}
@@ -3649,7 +3649,7 @@ MonoBehaviour:
   splitBulletPrefab: {fileID: 0}
   specialBulletUI: {fileID: 647585464}
   shootSound: {fileID: 8300000, guid: 44fe669e79194764fad26d1294de0a91, type: 3}
-  shootVolume: 1
+  shootVolume: 0.3
   maxSpecialBullets: 5
 --- !u!114 &1561391673
 MonoBehaviour:

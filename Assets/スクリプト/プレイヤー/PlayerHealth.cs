@@ -103,6 +103,11 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("無敵終了");
     }
 
+    public bool IsFullHealth()
+    {
+        return currentHits >= maxHits;
+    }
+
     // HPアイテムで1回分回復
     public void Heal()
     {

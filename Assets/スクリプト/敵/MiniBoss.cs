@@ -9,6 +9,8 @@ public class MiniBoss : MonoBehaviour
 
     private Transform player;
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     [Header("攻撃")]
     public GameObject enemyBulletPrefab;
@@ -18,6 +20,8 @@ public class MiniBoss : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         currentHP = maxHP;
 
@@ -28,22 +32,44 @@ public class MiniBoss : MonoBehaviour
         {
             player = playerObject.transform;
         }
+        else
+        {
+            Debug.LogWarning("Playerタグのオブジェクトが見つかりません");
+        }
+
+        if (animator == null)
+        {
+            Debug.LogWarning("中ボスのAnimatorが見つかりません");
+        }
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("中ボスのSpriteRendererが見つかりません");
+        }
 
         InvokeRepeating(nameof(Shoot), 2f, shootInterval);
     }
 
     void FixedUpdate()
     {
-        if (player == null)
+        if (player == null || rb == null)
             return;
 
-        // プレイヤーを追いかける
         Vector2 direction =
             ((Vector2)player.position - rb.position).normalized;
 
         rb.linearVelocity = direction * moveSpeed;
-    }
 
+        // プレイヤーの左右位置に合わせて向きを変える
+        if (player.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (player.position.x > transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
 
     public void TakeDamage()
     {
@@ -54,7 +80,7 @@ public class MiniBoss : MonoBehaviour
     {
         currentHP -= damage;
 
-        Debug.Log("中ボスにダメージ！ 残りHP：" + currentHP);
+        Debug.Log("中ボスがダメージを受けた！ 残りHP：" + currentHP);
 
         if (currentHP <= 0)
         {
@@ -62,26 +88,31 @@ public class MiniBoss : MonoBehaviour
         }
     }
 
-
     void Shoot()
     {
         if (player == null || enemyBulletPrefab == null)
             return;
 
-        // プレイヤーへの方向
-        Vector2 direction =
-            ((Vector2)player.position - (Vector2)transform.position).normalized;
+        // 攻撃モーションを再生
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
 
-        // 真ん中
+        Vector2 direction =
+            ((Vector2)player.position -
+             (Vector2)transform.position).normalized;
+
+        // 正面
         CreateBullet(direction);
 
-        // 左
+        // 左側
         Vector2 leftDirection =
             Quaternion.Euler(0, 0, 20f) * direction;
 
         CreateBullet(leftDirection);
 
-        // 右
+        // 右側
         Vector2 rightDirection =
             Quaternion.Euler(0, 0, -20f) * direction;
 
@@ -112,17 +143,7 @@ public class MiniBoss : MonoBehaviour
 
     void Die()
     {
-        // 回復アイテムを1個
-        GameObject healItem =
-            GameObject.Find("HealItem");
-
-        // 特殊弾を2個
-        GameObject specialItem =
-            GameObject.Find("SpecialBulletItem");
-
-        // EnemyDropから確実にドロップ
-        EnemyDrop drop =
-            GetComponent<EnemyDrop>();
+        EnemyDrop drop = GetComponent<EnemyDrop>();
 
         if (drop != null)
         {
